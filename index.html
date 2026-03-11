@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نور الحق - موقع الإسلام والدليل والبيان</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --gold-dark: #8A6A1A;
+    --dark: #0A0D0F;
+    --dark2: #111519;
+    --dark3: #181E24;
+    --dark4: #1E262E;
+    --teal: #1A7A6E;
+    --teal-light: #25A99A;
+    --cream: #F5EDD8;
+    --text: #D8CEB8;
+    --text-muted: #8A8070;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* BACKGROUND PATTERN */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(201,168,76,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(26,122,110,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ISLAMIC GEOMETRIC PATTERN OVERLAY */
+  .geo-bg {
+    position: fixed;
+    inset: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23C9A84C' stroke-width='0.5'%3E%3Cpolygon points='40,5 75,25 75,55 40,75 5,55 5,25'/%3E%3Cpolygon points='40,15 65,30 65,50 40,65 15,50 15,30'/%3E%3Cline x1='40' y1='5' x2='40' y2='75'/%3E%3Cline x1='5' y1='25' x2='75' y2='55'/%3E%3Cline x1='75' y1='25' x2='5' y2='55'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,13,15,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 0 2rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .nav-logo .logo-icon {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 20px rgba(201,168,76,0.3);
+  }
+
+  .nav-logo span {
+    font-family: 'Amiri', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .nav-upload-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--dark) !important;
+    font-weight: 700 !important;
+    padding: 0.45rem 1rem !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(201,168,76,0.25);
+  }
+
+  .nav-upload-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(201,168,76,0.35) !important;
+    background: rgba(0,0,0,0) !important;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold)) !important;
+  }
+
+  /* ===== HERO ===== */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 2rem 4rem;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-star {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.06;
+    animation: spin 60s linear infinite;
+  }
+
+  @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  .hero-crescent {
+    font-size: 4rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: block;
+    filter: drop-shadow(0 0 30px rgba(201,168,76,0.5));
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hero-basmala {
+    font-family: 'Scheherazade New', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--gold);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 1s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.4s forwards;
+  }
+
+  .hero-title .highlight {
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(201,168,76,0.4);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s 0.8s forwards;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(201,168,76,0.4);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 12px;
+    border: 1.5px solid rgba(201,168,76,0.4);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(201,168,76,0.08);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    background: var(--dark3);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0.5rem 3rem;
+    border-left: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .stat-item:last-child { border-left: none; }
+
+  .stat-num {
+    font-family: 'Amiri', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: #fff;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+
+  .section-title span { color: var(--gold); }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* GOLD DIVIDER */
+  .gold-divider {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1rem auto;
+    border-radius: 2px;
+  }
+
+  /* ===== CATEGORIES ===== */
+  #categories {
+    padding: 6rem 2rem;
+    background: var(--dark2);
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cat-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(201,168,76,0.04));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .cat-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201,168,76,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(201,168,76,0.1);
+  }
+
+  .cat-card:hover::before { opacity: 1; }
+
+  .cat-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .cat-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .cat-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .cat-count {
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .cat-arrow {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    color: var(--gold);
+    opacity: 0;
+    transform: translateX(5px);
+    transition: all 0.3s;
+    font-size: 1.2rem;
+  }
+
+  .cat-card:hover .cat-arrow { opacity: 1; transform: translateX(0); }
+
+  /* ===== VIDEOS SECTION ===== */
+  #videos {
+    padding: 6rem 2rem;
+    background: var(--dark);
+  }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.75rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+  }
+
+  .video-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .video-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(201,168,76,0.25);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  .video-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--dark4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-thumb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .play-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--dark);
+    box-shadow: 0 8px 25px rgba(201,168,76,0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .play-btn:hover { transform: scale(1.1); }
+
+  .video-cat-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(10,13,15,0.85);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  .video-info {
+    padding: 1.25rem;
+  }
+
+  .video-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .video-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* ===== UPLOAD SECTION ===== */
+  #upload {
+    padding: 6rem 2rem;
+    background: var(--dark2);
+  }
+
+  .upload-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 24px;
+    padding: 3rem;
+  }
+
+  .upload-area {
+    border: 2px dashed rgba(201,168,76,0.3);
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: rgba(201,168,76,0.02);
+    margin-bottom: 2rem;
+  }
+
+  .upload-area:hover, .upload-area.drag-over {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .upload-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .upload-text { color: #fff; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .upload-sub { color: var(--text-muted); font-size: 0.9rem; }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .form-input, .form-select, .form-textarea {
+    background: var(--dark4);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s;
+    outline: none;
+    direction: rtl;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  }
+
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-select option { background: var(--dark3); }
+
+  .upload-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--dark);
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
+
+  .upload-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(201,168,76,0.4);
+  }
+
+  /* ===== EVIDENCES ===== */
+  #evidences {
+    padding: 6rem 2rem;
+    background: var(--dark);
+  }
+
+  .evidence-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.15);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn:hover, .tab-btn.active {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--dark);
+    border-color: transparent;
+  }
+
+  .evidence-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .evidence-content.active { display: block; animation: fadeUp 0.4s; }
+
+  .evidence-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .evidence-card::before {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+    border-radius: 0 0 0 4px;
+  }
+
+  .ev-num {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Amiri', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    float: left;
+    margin-left: 1rem;
+    line-height: 1;
+  }
+
+  .ev-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+
+  .ev-text {
+    color: var(--text-muted);
+    line-height: 1.9;
+    font-size: 0.97rem;
+  }
+
+  .ev-source {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.2rem 0.7rem;
+    border-radius: 6px;
+  }
+
+  /* ===== QURAN VERSE HIGHLIGHT ===== */
+  .quran-block {
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(26,122,110,0.06));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    margin: 3rem auto;
+    max-width: 800px;
+  }
+
+  .quran-text {
+    font-family: 'Scheherazade New', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    color: var(--gold);
+    line-height: 2.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .quran-ref {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* ===== DOUBTS SECTION ===== */
+  #doubts {
+    padding: 6rem 2rem;
+    background: var(--dark2);
+  }
+
+  .doubts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .doubt-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: 16px;
+    padding: 1.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .doubt-card:hover {
+    border-color: rgba(201,168,76,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  }
+
+  .doubt-q {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .doubt-q::before {
+    content: '؟';
+    background: rgba(201,168,76,0.1);
+    color: var(--gold);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .doubt-preview {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-right: 2.5rem;
+  }
+
+  .doubt-tag {
+    margin-top: 1rem;
+    margin-right: 2.5rem;
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--teal-light);
+    border: 1px solid rgba(37,169,154,0.25);
+    padding: 0.15rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .modal-overlay.open { display: flex; animation: fadeIn 0.2s; }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal-box {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 20px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    position: relative;
+    animation: slideUp 0.3s;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(201,168,76,0.1);
+    border: none;
+    color: var(--gold);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: rgba(201,168,76,0.2); }
+
+  .modal-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    padding-left: 3rem;
+    line-height: 1.5;
+  }
+
+  .modal-body {
+    color: var(--text);
+    line-height: 1.95;
+    font-size: 1rem;
+  }
+
+  .modal-body p { margin-bottom: 1rem; }
+
+  .modal-body strong { color: var(--gold); }
+
+  /* ===== COMPARE RELIGIONS ===== */
+  #compare {
+    padding: 6rem 2rem;
+    background: var(--dark);
+  }
+
+  .compare-table-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid rgba(201,168,76,0.12);
+  }
+
+  table.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--dark3);
+  }
+
+  .compare-table th {
+    background: var(--dark4);
+    padding: 1rem 1.5rem;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(201,168,76,0.15);
+  }
+
+  .compare-table th.islam-col {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  .compare-table td {
+    padding: 1rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  .compare-table td:first-child {
+    text-align: right;
+    color: #fff;
+    font-weight: 600;
+    border-left: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .compare-table .islam-col {
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.04);
+  }
+
+  .check { color: #4CAF50; font-size: 1.1rem; }
+  .cross { color: #f44336; font-size: 1.1rem; }
+  .partial { color: #FF9800; font-size: 0.85rem; }
+
+  /* ===== SEARCH ===== */
+  .search-wrap {
+    max-width: 600px;
+    margin: 0 auto 4rem;
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    background: var(--dark3);
+    border: 1.5px solid rgba(201,168,76,0.2);
+    border-radius: 50px;
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    padding: 0.85rem 3.5rem 0.85rem 1.5rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-input:focus { border-color: var(--gold); }
+
+  .search-icon {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 1.1rem;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 4rem 2rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+  }
+
+  .footer-brand .logo-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-brand h3 {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-brand p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .footer-col h4 {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col ul li {
+    margin-bottom: 0.6rem;
+  }
+
+  .footer-col ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .stat-item { padding: 0.5rem 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .compare-table td, .compare-table th { padding: 0.75rem 0.75rem; font-size: 0.8rem; }
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--dark);
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 3000;
+    transition: transform 0.3s;
+    font-size: 0.95rem;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Mobile nav toggle */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 900px) { .nav-toggle { display: flex; } }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0; right: 0;
+    background: rgba(10,13,15,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 1.5rem;
+    z-index: 999;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+
+  .mobile-menu a:hover { background: rgba(201,168,76,0.08); color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="geo-bg"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="logo-icon">☪</div>
+    <span>نور الحق</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#categories">الأقسام</a></li>
+    <li><a href="#evidences">أدلة النبوة</a></li>
+    <li><a href="#doubts">الشبهات</a></li>
+    <li><a href="#compare">مقارنة الأديان</a></li>
+    <li><a href="#videos">الفيديوهات</a></li>
+    <li><a href="#upload" class="nav-upload-btn">📤 رفع فيديو</a></li>
+  </ul>
+  <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#categories" onclick="toggleMenu()">الأقسام</a>
+  <a href="#evidences" onclick="toggleMenu()">أدلة النبوة</a>
+  <a href="#doubts" onclick="toggleMenu()">الشبهات</a>
+  <a href="#compare" onclick="toggleMenu()">مقارنة الأديان</a>
+  <a href="#videos" onclick="toggleMenu()">الفيديوهات</a>
+  <a href="#upload" onclick="toggleMenu()">📤 رفع فيديو</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <svg class="hero-star" viewBox="0 0 100 100">
+    <polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" fill="none" stroke="#C9A84C" stroke-width="0.5"/>
+    <polygon points="50,15 59,40 85,40 65,55 73,80 50,65 27,80 35,55 15,40 41,40" fill="none" stroke="#C9A84C" stroke-width="0.3"/>
+  </svg>
+  <div>
+    <span class="hero-crescent">☪</span>
+    <p class="hero-basmala">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+    <h1 class="hero-title">
+      الحقيقة<br><span class="highlight">تُنير الطريق</span>
+    </h1>
+    <p class="hero-sub">
+      موقع متخصص في الدفاع عن الإسلام بالدليل العلمي والعقلي — أدلة النبوة، رد الشبهات، 
+      إثبات صحة الإسلام، ومقارنة الأديان بموضوعية ومنهجية
+    </p>
+    <div class="hero-cta">
+      <a href="#evidences" class="btn-primary">⚡ أدلة النبوة</a>
+      <a href="#doubts" class="btn-secondary">🛡 رد الشبهات</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">+200</span>
+    <span class="stat-label">شبهة مُجابة</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">+85</span>
+    <span class="stat-label">دليل على النبوة</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">+50</span>
+    <span class="stat-label">فيديو تعليمي</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">12</span>
+    <span class="stat-label">دين مُقارَن</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="section-header reveal">
+    <span class="section-tag">📚 المحتوى</span>
+    <h2 class="section-title">أقسام <span>الموقع</span></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc">كل ما تحتاجه للتعلم والدفاع عن دينك في مكان واحد</p>
+  </div>
+  <div class="categories-grid">
+    <a class="cat-card reveal" href="#evidences">
+      <span class="cat-arrow">←</span>
+      <div class="cat-icon" style="background:linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.05))">⚡</div>
+      <div class="cat-title">أدلة النبوة</div>
+      <div class="cat-desc">إعجاز علمي، تاريخي، عددي، وبيولوجي يثبت صدق النبي ﷺ بالدليل القاطع</div>
+      <div class="cat-count">85+ دليل</div>
+    </a>
+    <a class="cat-card reveal" href="#doubts">
+      <span class="cat-arrow">←</span>
+      <div class="cat-icon" style="background:linear-gradient(135deg,rgba(26,122,110,0.2),rgba(26,122,110,0.05))">🛡</div>
+      <div class="cat-title">رد الشبهات</div>
+      <div class="cat-desc">ردود علمية وعقلية منهجية على جميع الشبهات التي تُثار حول الإسلام</div>
+      <div class="cat-count">200+ شبهة</div>
+    </a>
+    <a class="cat-card reveal" href="#compare">
+      <span class="cat-arrow">←</span>
+      <div class="cat-icon" style="background:linear-gradient(135deg,rgba(120,80,200,0.2),rgba(120,80,200,0.05))">⚖</div>
+      <div class="cat-title">مقارنة الأديان</div>
+      <div class="cat-desc">دراسة موضوعية مقارنة بين الإسلام والأديان الأخرى بالأدلة والمصادر</div>
+      <div class="cat-count">12 دين</div>
+    </a>
+    <a class="cat-card reveal" href="#videos">
+      <span class="cat-arrow">←</span>
+      <div class="cat-icon" style="background:linear-gradient(135deg,rgba(200,60,60,0.2),rgba(200,60,60,0.05))">🎬</div>
+      <div class="cat-title">المكتبة المرئية</div>
+      <div class="cat-desc">فيديوهات تعليمية مُختارة ومُصنفة للشرح والتعليم والدفاع عن الإسلام</div>
+      <div class="cat-count">50+ فيديو</div>
+    </a>
+    <a class="cat-card reveal" href="#fiqh">
+      <span class="cat-arrow">←</span>
+      <div class="cat-icon" style="background:linear-gradient(135deg,rgba(60,140,60,0.2),rgba(60,140,60,0.05))">📖</div>
+      <div class="cat-title">تعلّم الفقه</div>
+      <div class="cat-desc">دروس في الفقه الإسلامي والعبادات والمعاملات للمبتدئين والمتقدمين</div>
+      <div class="cat-count">120+ درس</div>
+    </a>
+    <a class="cat-card reveal" href="#quran">
+      <span class="cat-arrow">←</span>
+      <div class="cat-icon" style="background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(26,122,110,0.1))">📿</div>
+      <div class="cat-title">الإعجاز القرآني</div>
+      <div class="cat-desc">آيات قرآنية سبقت العلم الحديث بقرون، مع التوثيق العلمي الكامل</div>
+      <div class="cat-count">60+ آية</div>
+    </a>
+  </div>
+</section>
+
+<!-- QURAN VERSE -->
+<div class="quran-block reveal">
+  <div class="quran-text">
+    سَنُرِيهِمْ آيَاتِنَا فِي الْآفَاقِ وَفِي أَنفُسِهِمْ حَتَّىٰ يَتَبَيَّنَ لَهُمْ أَنَّهُ الْحَقُّ
+  </div>
+  <div class="quran-ref">سورة فُصِّلَت — الآية 53</div>
+</div>
+
+<!-- EVIDENCES -->
+<section id="evidences">
+  <div class="section-header reveal">
+    <span class="section-tag">⚡ الحجج القاطعة</span>
+    <h2 class="section-title">أدلة <span>النبوة</span></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc">أقوى الأدلة العلمية والعقلية والتاريخية على صدق النبي محمد ﷺ</p>
+  </div>
+
+  <div class="evidence-tabs">
+    <button class="tab-btn active" onclick="showTab('scientific')">🔬 الإعجاز العلمي</button>
+    <button class="tab-btn" onclick="showTab('historical')">📜 الإعجاز التاريخي</button>
+    <button class="tab-btn" onclick="showTab('numerical')">🔢 الإعجاز العددي</button>
+    <button class="tab-btn" onclick="showTab('logical')">🧠 الأدلة العقلية</button>
+    <button class="tab-btn" onclick="showTab('prophecies')">🔮 النبوءات المحققة</button>
+  </div>
+
+  <div id="tab-scientific" class="evidence-content active">
+    <div class="evidence-card reveal">
+      <div class="ev-num">01</div>
+      <div class="ev-title">تمدد الكون — Big Bang في القرآن</div>
+      <div class="ev-text">قال تعالى: <strong>"وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ"</strong> (الذاريات:47) — كلمة "مُوسِعون" تعني نحن نوسّعها باستمرار. لم يُكتشف تمدد الكون علمياً إلا عام 1929 على يد إدوين هابل، وقد صرّح العالم الفلكي الفرنسي موريس بوكاي أن هذه الآية لا يمكن أن تكون من كلام بشري في القرن السابع.
+      </div>
+      <span class="ev-source">مصدر: Stephen Hawking, A Brief History of Time + Maurice Bucaille</span>
+    </div>
+    <div class="evidence-card reveal">
+      <div class="ev-num">02</div>
+      <div class="ev-title">مراحل تكوين الجنين — الإعجاز الجنيني</div>
+      <div class="ev-text">ذكر القرآن مراحل تطور الجنين بدقة مذهلة: <strong>نطفة → علقة → مضغة → عظام → كسوة اللحم</strong>. وقد أعلن عالم الأجنة الكندي الشهير البروفيسور <strong>كيث مور</strong> أن هذه المعلومات لا يمكن أن تكون معروفة في القرن السابع الميلادي إلا بوحي إلهي، وأضاف هذه الآيات إلى كتابه المرجعي في علم الأجنة.</div>
+      <span class="ev-source">مصدر: Keith Moore, "The Developing Human" — الطبعة الإسلامية</span>
+    </div>
+    <div class="evidence-card reveal">
+      <div class="ev-num">03</div>
+      <div class="ev-title">الحاجز بين البحرين</div>
+      <div class="ev-text">قال تعالى: <strong>"مَرَجَ الْبَحْرَيْنِ يَلْتَقِيَانِ ۝ بَيْنَهُمَا بَرْزَخٌ لَّا يَبْغِيَانِ"</strong> — اكتشف العلم الحديث أن الماء المالح والعذب لا يختلطان رغم التقائهما بسبب فارق الكثافة والتوتر السطحي والتركيب الملحي. هذه الظاهرة لم تُكتشف إلا بالغواصات والتقنيات الحديثة.
+      </div>
+      <span class="ev-source">مصدر: ناشيونال جيوغرافيك + Jacques Cousteau</span>
+    </div>
+  </div>
+
+  <div id="tab-historical" class="evidence-content">
+    <div class="evidence-card reveal">
+      <div class="ev-num">01</div>
+      <div class="ev-title">الحفاظ على لقب "فرعون" بدلاً من "ملك"</div>
+      <div class="ev-text">استخدم القرآن كلمة "فرعون" لحاكم مصر في عهد موسى، بينما استخدم كلمة "ملك" لحاكم مصر في عهد يوسف. وقد أثبتت الأبحاث الأثرية الحديثة أن لقب "فرعون" لم يُستخدم إلا في فترة متأخرة تتزامن مع عهد موسى، بينما كان الحكام قبل ذلك يُلقَّبون بـ"ملك". هذه المعلومة لم تكن معروفة لأي عالم في القرن السابع.</div>
+      <span class="ev-source">مصدر: James K. Hoffmeier, "Israel in Egypt"</span>
+    </div>
+    <div class="evidence-card reveal">
+      <div class="ev-num">02</div>
+      <div class="ev-title">حفظ جسد فرعون — النبوءة المُحقَّقة</div>
+      <div class="ev-text">قال تعالى: <strong>"فَالْيَوْمَ نُنَجِّيكَ بِبَدَنِكَ لِتَكُونَ لِمَنْ خَلْفَكَ آيَةً"</strong> — عام 1898 اكتشف العلماء مومياء رمسيس الثاني سليمة تماماً. وعام 1975 أجرى العلماء الفرنسيون فحوصات على المومياء وأثبتوا أنه مات غرقاً وجسده محفوظ. وقد أسلم الطبيب الذي أجرى الفحوصات <strong>الدكتور موريس بوكاي</strong> بعد هذا الاكتشاف مباشرة.</div>
+      <span class="ev-source">مصدر: Maurice Bucaille, "Bible Quran and Science"</span>
+    </div>
+  </div>
+
+  <div id="tab-numerical" class="evidence-content">
+    <div class="evidence-card reveal">
+      <div class="ev-num">01</div>
+      <div class="ev-title">تكرار كلمة "يوم" 365 مرة</div>
+      <div class="ev-text">كلمة <strong>"يوم"</strong> بصيغة المفرد تكررت في القرآن الكريم 365 مرة — بالضبط عدد أيام السنة الشمسية. في المقابل، كلمة "شهر" تكررت 12 مرة، وكلمة "يوم" بصيغة الجمع "أيام" تكررت 30 مرة. هذا التطابق الرياضي الدقيق لا يمكن أن يكون مصادفة في كتاب نزل منجّماً على مدى 23 سنة.</div>
+      <span class="ev-source">مصدر: دراسة رياضية إحصائية للدكتور عبد الرزاق نوفل</span>
+    </div>
+    <div class="evidence-card reveal">
+      <div class="ev-num">02</div>
+      <div class="ev-title">التوازن العددي في الكلمات المتضادة</div>
+      <div class="ev-text">الإحصاء القرآني يُظهر توازناً رياضياً مذهلاً: <strong>الدنيا = الآخرة = 115 مرة</strong>، <strong>الشيطان = الملائكة = 88 مرة</strong>، <strong>الحياة = الموت = 145 مرة</strong>، <strong>النفع = الضرر = 50 مرة</strong>. هذا التوازن في كتاب يتجاوز 600 صفحة ونزل على مدى 23 سنة يستحيل تفسيره بغير الوحي.</div>
+      <span class="ev-source">مصدر: الدكتور عبد الرزاق نوفل — "الإعجاز العددي في القرآن"</span>
+    </div>
+  </div>
+
+  <div id="tab-logical" class="evidence-content">
+    <div class="evidence-card reveal">
+      <div class="ev-num">01</div>
+      <div class="ev-title">استحالة الكذب على المستوى الاجتماعي</div>
+      <div class="ev-text">النبي ﷺ عاش 40 سنة بين قومه قبل النبوة وكانوا يلقبونه بـ<strong>"الصادق الأمين"</strong>. إذا كان كاذباً فكيف حافظ على هذا اللقب 40 سنة؟ وكيف تحمّل هو وأصحابه التعذيب والنفي والحصار والحرب؟ لو كان الأمر كذباً لكشفه أقاربه وأصحابه الذين عرفوا خفاياه. الاستعداد للتضحية بالنفس من أجل فكرة أكبر دليل على الإيمان الحقيقي.</div>
+      <span class="ev-source">مصدر: William Montgomery Watt, "Muhammad: Prophet and Statesman"</span>
+    </div>
+    <div class="evidence-card reveal">
+      <div class="ev-num">02</div>
+      <div class="ev-title">التحدي الخالد: الإعجاز البياني</div>
+      <div class="ev-text">تحدّى القرآن العرب — وهم أمة فصاحة وبلاغة — أن يأتوا بمثله أو بعشر سور أو بسورة واحدة. مضت 14 قرناً ولم يستطع أحد قبول هذا التحدي. وكان العرب يعلمون أن التزوير ممكن ولكنهم آثروا الحرب على قبول التحدي — مما يدل على إدراكهم باستحالة الإتيان بمثله. العالم اللغوي الغربي <strong>A.J. Arberry</strong> وصف أسلوب القرآن بأنه "ظاهرة فريدة في تاريخ البشرية الأدبي".</div>
+      <span class="ev-source">مصدر: A.J. Arberry, "The Koran Interpreted"</span>
+    </div>
+  </div>
+
+  <div id="tab-prophecies" class="evidence-content">
+    <div class="evidence-card reveal">
+      <div class="ev-num">01</div>
+      <div class="ev-title">نبوءة انتصار الروم على الفرس</div>
+      <div class="ev-text">قوله تعالى: <strong>"غُلِبَتِ الرُّومُ ۝ فِي أَدْنَى الْأَرْضِ وَهُم مِّن بَعْدِ غَلَبِهِمْ سَيَغْلِبُونَ ۝ فِي بِضْعِ سِنِينَ"</strong>. نزلت هذه الآية عام 615م عندما هزمت فارس الروم بشكل ساحق. وكانت المنطق يقول أن فارس ستبقى منتصرة. لكن القرآن تنبأ بانتصار الروم في غضون سنوات — وفعلاً في عام 622-627م انتصرت الروم. رهن أبو بكر على ذلك بأمر من النبي ﷺ وربح الرهان.</div>
+      <span class="ev-source">مصدر: Edward Gibbon, "The History of the Decline and Fall of the Roman Empire"</span>
+    </div>
+    <div class="evidence-card reveal">
+      <div class="ev-num">02</div>
+      <div class="ev-title">نبوءة فتح مكة والمدن الكبرى</div>
+      <div class="ev-text">قبل غزوة الأحزاب بسنوات، أخبر النبي ﷺ أصحابه الجائعين الذين يحفرون الخندق وهم محاصرون بأنهم سيفتحون <strong>فارس والروم واليمن</strong>. قال ذلك في أحلك اللحظات عندما كانت 10 آلاف جندي تحاصر المدينة. تحققت هذه النبوءة بالكامل خلال 20 سنة — في أعظم انتصار عسكري وحضاري في التاريخ.</div>
+      <span class="ev-source">مصدر: ابن هشام — السيرة النبوية + صحيح البخاري</span>
+    </div>
+  </div>
+</section>
+
+<!-- DOUBTS -->
+<section id="doubts">
+  <div class="section-header reveal">
+    <span class="section-tag">🛡 الدفاع عن الإسلام</span>
+    <h2 class="section-title">رد <span>الشبهات</span></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc">إجابات علمية ومنهجية على أبرز الشبهات المُثارة</p>
+  </div>
+
+  <div class="search-wrap reveal">
+    <input type="text" class="search-input" placeholder="ابحث عن شبهة..." oninput="filterDoubts(this.value)">
+    <span class="search-icon">🔍</span>
+  </div>
+
+  <div class="doubts-grid" id="doubtsGrid">
+    <div class="doubt-card reveal" onclick="openDoubt(0)">
+      <div class="doubt-q">هل القرآن من تأليف محمد ﷺ؟</div>
+      <div class="doubt-preview">اتّهام يُطرح كثيراً — نرد عليه بالأدلة اللغوية والتاريخية والعلمية...</div>
+      <span class="doubt-tag">الإعجاز البياني</span>
+    </div>
+    <div class="doubt-card reveal" onclick="openDoubt(1)">
+      <div class="doubt-q">لماذا أُبيح تعدد الزوجات في الإسلام؟</div>
+      <div class="doubt-preview">فهم السياق التاريخي والاجتماعي والشروط الصارمة للتعدد...</div>
+      <span class="doubt-tag">الفقه الاجتماعي</span>
+    </div>
+    <div class="doubt-card reveal" onclick="openDoubt(2)">
+      <div class="doubt-q">هل الإسلام دين عنف وإرهاب؟</div>
+      <div class="doubt-preview">تمييز ضروري بين تعاليم الإسلام وتصرفات بعض المسلمين...</div>
+      <span class="doubt-tag">الجهاد والسلام</span>
+    </div>
+    <div class="doubt-card reveal" onclick="openDoubt(3)">
+      <div class="doubt-q">لماذا يُعدّ المسلمون نصوص الكتاب المقدس محرّفة؟</div>
+      <div class="doubt-preview">أدلة من علماء الكتاب المقدس أنفسهم على وقوع التحريف والتبديل...</div>
+      <span class="doubt-tag">نقد الأديان</span>
+    </div>
+    <div class="doubt-card reveal" onclick="openDoubt(4)">
+      <div class="doubt-q">كيف يتعامل الإسلام مع المرأة؟</div>
+      <div class="doubt-preview">حقوق المرأة في الإسلام مقارنةً بما كانت عليه في الجاهلية وعند الأمم الأخرى...</div>
+      <span class="doubt-tag">حقوق المرأة</span>
+    </div>
+    <div class="doubt-card reveal" onclick="openDoubt(5)">
+      <div class="doubt-q">هل يتناقض الإسلام مع العلم؟</div>
+      <div class="doubt-preview">الإسلام هو الدين الوحيد الذي حثّ على العلم منذ أول آية — "اقرأ"...</div>
+      <span class="doubt-tag">الإسلام والعلم</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE RELIGIONS -->
+<section id="compare">
+  <div class="section-header reveal">
+    <span class="section-tag">⚖ الحقيقة موضوعياً</span>
+    <h2 class="section-title">الإسلام و<span>الأديان الأخرى</span></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc">مقارنة علمية موضوعية بالمصادر الأصلية لكل دين</p>
+  </div>
+
+  <div class="compare-table-wrap reveal">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>المعيار</th>
+          <th class="islam-col">☪ الإسلام</th>
+          <th>✝ المسيحية</th>
+          <th>✡ اليهودية</th>
+          <th>🕉 الهندوسية</th>
+          <th>البوذية</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>وحدانية الله بلا شريك</td>
+          <td class="islam-col"><span class="check">✔</span></td>
+          <td><span class="partial">جزئياً (التثليث)</span></td>
+          <td><span class="check">✔</span></td>
+          <td><span class="cross">✘</span></td>
+          <td><span class="cross">✘</span></td>
+        </tr>
+        <tr>
+          <td>الكتاب المقدس محفوظ</td>
+          <td class="islam-col"><span class="check">✔ (القرآن)</span></td>
+          <td><span class="cross">✘ (محرَّف)</span></td>
+          <td><span class="cross">✘ (محرَّف)</span></td>
+          <td><span class="partial">اختلاف النسخ</span></td>
+          <td><span class="partial">اختلاف النسخ</span></td>
+        </tr>
+        <tr>
+          <td>نبوءات المؤسس متحققة</td>
+          <td class="islam-col"><span class="check">✔ (100+)</span></td>
+          <td><span class="partial">بعضها</span></td>
+          <td><span class="partial">بعضها</span></td>
+          <td><span class="cross">لا نبوءات</span></td>
+          <td><span class="cross">لا نبوءات</span></td>
+        </tr>
+        <tr>
+          <td>إعجاز علمي في الكتاب</td>
+          <td class="islam-col"><span class="check">✔ (موثق)</span></td>
+          <td><span class="cross">✘</span></td>
+          <td><span class="cross">✘</span></td>
+          <td><span class="partial">نسبي</span></td>
+          <td><span class="cross">✘</span></td>
+        </tr>
+        <tr>
+          <td>توحيد الرسالة منذ آدم</td>
+          <td class="islam-col"><span class="check">✔</span></td>
+          <td><span class="partial">يسوع فقط</span></td>
+          <td><span class="partial">إسرائيل فقط</span></td>
+          <td><span class="cross">✘</span></td>
+          <td><span class="cross">✘</span></td>
+        </tr>
+        <tr>
+          <td>العقلانية والدليل</td>
+          <td class="islam-col"><span class="check">✔ مطلوب</span></td>
+          <td><span class="partial">الإيمان أولاً</span></td>
+          <td><span class="partial">متوسط</span></td>
+          <td><span class="cross">أساطير</span></td>
+          <td><span class="partial">فلسفي</span></td>
+        </tr>
+        <tr>
+          <td>الشريعة تنظم كل الحياة</td>
+          <td class="islam-col"><span class="check">✔ متكامل</span></td>
+          <td><span class="cross">دين فقط</span></td>
+          <td><span class="partial">جزئياً</span></td>
+          <td><span class="partial">النظام الطبقي</span></td>
+          <td><span class="cross">✘</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="section-header reveal">
+    <span class="section-tag">🎬 المكتبة المرئية</span>
+    <h2 class="section-title">فيديوهات <span>تعليمية</span></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc">محتوى مرئي منتقى ومُصنَّف لتعميق الفهم والحجة</p>
+  </div>
+
+  <div class="videos-grid">
+    <div class="video-card reveal">
+      <div class="video-thumb">
+        <div class="video-thumb-placeholder">
+          <div class="play-btn">▶</div>
+          <span>الإعجاز العلمي في القرآن</span>
+        </div>
+        <span class="video-cat-badge">⚡ أدلة النبوة</span>
+      </div>
+      <div class="video-info">
+        <div class="video-title">الإعجاز العلمي في القرآن الكريم — دراسة موثقة</div>
+        <div class="video-meta"><span>⏱ 42 دقيقة</span><span>👁 12,400 مشاهدة</span></div>
+      </div>
+    </div>
+    <div class="video-card reveal">
+      <div class="video-thumb">
+        <div class="video-thumb-placeholder">
+          <div class="play-btn">▶</div>
+          <span>رد شبهات المستشرقين</span>
+        </div>
+        <span class="video-cat-badge">🛡 رد الشبهات</span>
+      </div>
+      <div class="video-info">
+        <div class="video-title">الرد المنهجي على أبرز شبهات المستشرقين</div>
+        <div class="video-meta"><span>⏱ 55 دقيقة</span><span>👁 8,900 مشاهدة</span></div>
+      </div>
+    </div>
+    <div class="video-card reveal">
+      <div class="video-thumb">
+        <div class="video-thumb-placeholder">
+          <div class="play-btn">▶</div>
+          <span>مقارنة الأديان</span>
+        </div>
+        <span class="video-cat-badge">⚖ مقارنة الأديان</span>
+      </div>
+      <div class="video-info">
+        <div class="video-title">لماذا الإسلام؟ — مقارنة موضوعية بالأدلة</div>
+        <div class="video-meta"><span>⏱ 38 دقيقة</span><span>👁 19,200 مشاهدة</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center">
+    <a href="#upload" class="btn-primary">📤 أضف فيديوك هنا</a>
+  </div>
+</section>
+
+<!-- UPLOAD SECTION -->
+<section id="upload">
+  <div class="section-header reveal">
+    <span class="section-tag">📤 لوحة المشرف</span>
+    <h2 class="section-title">رفع <span>فيديو جديد</span></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc">أضف محتواك التعليمي بسهولة وسيظهر في المكتبة فوراً</p>
+  </div>
+
+  <div class="upload-container reveal">
+    <div class="upload-area" id="dropArea" onclick="triggerFileInput()">
+      <span class="upload-icon">🎬</span>
+      <div class="upload-text">اسحب الفيديو هنا أو اضغط للاختيار</div>
+      <div class="upload-sub">MP4, MOV, AVI — الحد الأقصى 2GB</div>
+      <div id="uploadFileName" style="margin-top:1rem; color:var(--gold); font-weight:600; display:none"></div>
+    </div>
+    <input type="file" id="fileInput" accept="video/*" style="display:none" onchange="handleFileSelect(this)">
+
+    <!-- Thumbnail Upload -->
+    <div class="form-group" style="margin-bottom:1.25rem">
+      <label class="form-label">📸 صورة مصغرة (Thumbnail)</label>
+      <div class="upload-area" style="padding:1.5rem" onclick="triggerThumbInput()">
+        <span style="font-size:2rem">🖼</span>
+        <div class="upload-text" style="font-size:0.95rem">اختر صورة للفيديو</div>
+        <div class="upload-sub">JPG, PNG — 1280×720 مستحسن</div>
+        <div id="thumbFileName" style="margin-top:0.5rem; color:var(--gold); font-size:0.9rem; display:none"></div>
+      </div>
+      <input type="file" id="thumbInput" accept="image/*" style="display:none" onchange="handleThumbSelect(this)">
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group full">
+        <label class="form-label">عنوان الفيديو *</label>
+        <input type="text" class="form-input" id="vidTitle" placeholder="مثال: الإعجاز العددي في القرآن الكريم">
+      </div>
+      <div class="form-group">
+        <label class="form-label">القسم *</label>
+        <select class="form-select" id="vidCat">
+          <option value="">اختر القسم...</option>
+          <option>⚡ أدلة النبوة</option>
+          <option>🛡 رد الشبهات</option>
+          <option>⚖ مقارنة الأديان</option>
+          <option>📖 تعلم الفقه</option>
+          <option>📿 الإعجاز القرآني</option>
+          <option>🧠 العقيدة والكلام</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">المدة التقريبية</label>
+        <input type="text" class="form-input" id="vidDuration" placeholder="مثال: 35 دقيقة">
+      </div>
+      <div class="form-group full">
+        <label class="form-label">وصف الفيديو</label>
+        <textarea class="form-textarea" id="vidDesc" placeholder="اكتب وصفاً موجزاً لمحتوى الفيديو..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">رابط يوتيوب (اختياري)</label>
+        <input type="url" class="form-input" id="vidYoutube" placeholder="https://youtube.com/watch?v=...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">كلمات مفتاحية</label>
+        <input type="text" class="form-input" id="vidTags" placeholder="إعجاز، قرآن، علم...">
+      </div>
+    </div>
+    <button class="upload-submit" onclick="submitVideo()">📤 رفع الفيديو ونشره</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-icon">☪</div>
+      <h3>نور الحق</h3>
+      <p>موقع متخصص في الدفاع عن الإسلام بالدليل والبرهان، ونشر المعرفة الإسلامية الصحيحة للعالم أجمع.</p>
+    </div>
+    <div class="footer-col">
+      <h4>أقسام الموقع</h4>
+      <ul>
+        <li><a href="#evidences">أدلة النبوة</a></li>
+        <li><a href="#doubts">رد الشبهات</a></li>
+        <li><a href="#compare">مقارنة الأديان</a></li>
+        <li><a href="#videos">الفيديوهات</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>التعلم</h4>
+      <ul>
+        <li><a href="#">الفقه الإسلامي</a></li>
+        <li><a href="#">الإعجاز القرآني</a></li>
+        <li><a href="#">العقيدة</a></li>
+        <li><a href="#">السيرة النبوية</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>المشرف</h4>
+      <ul>
+        <li><a href="#upload">رفع فيديو</a></li>
+        <li><a href="#">إدارة المحتوى</a></li>
+        <li><a href="#">الإحصائيات</a></li>
+        <li><a href="#">التواصل</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 نور الحق — جميع الحقوق محفوظة</span>
+    <span style="font-family:'Scheherazade New',serif; color:var(--gold)">وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="doubtModal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDoubt()">✕</button>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // DOUBTS DATA
+  const doubtsData = [
+    {
+      q: "هل القرآن من تأليف محمد ﷺ؟",
+      body: `<p><strong>الدليل الأول — الأمية:</strong> النبي ﷺ كان أمياً لا يقرأ ولا يكتب. كيف يُؤلّف كتاباً يعجز عنه فصحاء العرب؟ ويُقرّ بذلك المستشرق الغربي <em>William Montgomery Watt</em> في كتابه عن النبي.</p>
+      <p><strong>الدليل الثاني — تحدي الإعجاز:</strong> تحدّى القرآن العرب أن يأتوا بسورة من مثله فعجزوا، واختاروا الحرب بدلاً من قبول التحدي — لأنهم يعرفون أن المعجزة حقيقية.</p>
+      <p><strong>الدليل الثالث — المعلومات العلمية:</strong> يحتوي القرآن على معلومات علمية لم تُكتشف إلا في القرن العشرين. هل "ألّفها" رجل أمي في الجزيرة العربية قبل 1400 سنة؟</p>
+      <p><strong>الدليل الرابع — الاتساق الكامل:</strong> نزل القرآن منجّماً على 23 سنة في أحوال متباينة (حرب، سلم، حزن، فرح) وهو متسق تماماً بلا تناقض — أمر يستحيل تحقيقه في أي عمل بشري طويل المدى.</p>
+      <p><em>قال تعالى: "أَفَلَا يَتَدَبَّرُونَ الْقُرْآنَ ۚ وَلَوْ كَانَ مِنْ عِندِ غَيْرِ اللَّهِ لَوَجَدُوا فِيهِ اخْتِلَافًا كَثِيرًا"</em></p>`
+    },
+    {
+      q: "لماذا أُبيح تعدد الزوجات في الإسلام؟",
+      body: `<p><strong>السياق التاريخي:</strong> قبل الإسلام، كان الرجل يتزوج عشرات النساء بلا حدود ولا شروط. الإسلام <em>قيّد</em> التعدد ولم يأمر به — حصره بأربع بشروط قاسية جداً.</p>
+      <p><strong>الشروط الشرعية:</strong> التعدد مشروط بـ: (١) العدل المطلق بين الزوجات، (٢) القدرة المالية، (٣) القدرة الجسدية والنفسية. قال تعالى: "فَإِن خِفْتُمْ أَلَّا تَعْدِلُوا فَوَاحِدَةً" — أي الأصل الزواج من واحدة.</p>
+      <p><strong>الجانب الاجتماعي:</strong> في المجتمعات التي تكثر فيها الأرامل والمحتاجات (كبعد الحروب)، يُوفّر التعدد حماية اجتماعية واقتصادية. وقد تزوج النبي ﷺ أكثر نسائه وكنّ أرامل لهن أبناء.</p>
+      <p><strong>مقارنة بالغرب:</strong> الزواج من واحدة مع الخيانة الزوجية المنتشرة أسوأ بكثير من الزواج القانوني المسؤول من اثنتين بعلم وموافقة.</p>`
+    },
+    {
+      q: "هل الإسلام دين عنف وإرهاب؟",
+      body: `<p><strong>أولاً — التمييز الضروري:</strong> تصرفات المسلمين ليست تعاليم الإسلام. أفعال أفراد أو جماعات لا تعكس بالضرورة الدين الذي يدّعون الانتساب إليه.</p>
+      <p><strong>ثانياً — ماذا يقول القرآن فعلاً؟</strong> "مَن قَتَلَ نَفْسًا بِغَيْرِ نَفْسٍ أَوْ فَسَادٍ فِي الْأَرْضِ فَكَأَنَّمَا قَتَلَ النَّاسَ جَمِيعًا" — هذا النص أقوى من أي قانون دولي لحقوق الإنسان.</p>
+      <p><strong>ثالثاً — الجهاد بمفهومه الصحيح:</strong> الجهاد الأكبر هو جهاد النفس. الجهاد المسلح له شروط دقيقة: دفاع لا هجوم، لا قتل للمدنيين ولا الأطفال ولا المرأة ولا رجال الدين ولا قطع الأشجار.</p>
+      <p><strong>رابعاً — شهادة التاريخ:</strong> حين فتح المسلمون القدس عام 638م، دخلوها بالسلام وحافظوا على كنائسها. وحين دخل الصليبيون القدس عام 1099م أفنوا سكانها. التاريخ يتحدث عن نفسه.</p>`
+    },
+    {
+      q: "لماذا يُعدّ المسلمون نصوص الكتاب المقدس محرّفة؟",
+      body: `<p><strong>شهادة علماء الكتاب المقدس أنفسهم:</strong> يُقرّ علماء النصرانية المعاصرون بوجود تحريفات. الباحث <em>Bart Ehrman</em> في كتابه "Misquoting Jesus" يؤكد أن النص الإنجيلي تعرّض لتغييرات واسعة.</p>
+      <p><strong>الأمثلة الموثقة:</strong> (١) مقطع الثلاثة الشهود (1يوحنا 5:7) أُضيف لاحقاً وغير موجود في النسخ القديمة. (٢) نهاية إنجيل مرقس (16:9-20) مُضافة. (٣) قصة المرأة الزانية في يوحنا غير موجودة في المخطوطات الأقدم.</p>
+      <p><strong>التحريف في القرآن مستحيل:</strong> القرآن محفوظ عن طريق: (١) الحفظ الشفهي لملايين الحفاظ عبر الأجيال، (٢) التواتر القاطع، (٣) الحفظ الإلهي المُعلَن: "إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ وَإِنَّا لَهُ لَحَافِظُونَ".</p>`
+    },
+    {
+      q: "كيف يتعامل الإسلام مع المرأة؟",
+      body: `<p><strong>في عصر ظلام المرأة:</strong> حين كانت أوروبا تُجادل هل للمرأة روح أم لا — كان الإسلام يُقرّر أن المرأة نصف المجتمع وأن "الجنة تحت أقدام الأمهات".</p>
+      <p><strong>حقوق مُعطاة منذ 1400 سنة:</strong> حق الإرث، حق الملكية، حق رفض الزواج، حق الطلاق "الخلع"، حق التعليم، حق العمل — كل هذا قرره الإسلام قبل أن تحصل عليه المرأة الغربية بقرون.</p>
+      <p><strong>الحجاب — حماية لا قيد:</strong> الحجاب فريضة إلهية تُكرّم المرأة بتحرير كرامتها من تقييم المظهر. والغريب أن الراهبات المسيحيات واليهوديات المتدينات يرتدين الحجاب أيضاً.</p>
+      <p><strong>شهادة مسلمات مختارات:</strong> المرأة الغربية التي أسلمت تختار الحجاب بمحض إرادتها لأنها تجد فيه كرامة حقيقية لا يُوفرها ثقافة الاستعراض.</p>`
+    },
+    {
+      q: "هل يتناقض الإسلام مع العلم؟",
+      body: `<p><strong>أول كلمة في القرآن:</strong> "اقْرَأْ" — هذا يُلخّص موقف الإسلام من العلم. لا دين في التاريخ يدعو للعلم والتفكر بهذا الوضوح.</p>
+      <p><strong>الحضارة الإسلامية والعلم:</strong> في القرن الذهبي الإسلامي (القرن 8-13م)، كان المسلمون في طليعة العلم العالمي: الخوارزمي (الجبر)، ابن سينا (الطب)، ابن الهيثم (البصريات)، البيروني (الفيزياء). أوروبا استفادت من هذا الإرث لتنهض من ظلامها.</p>
+      <p><strong>آيات تدعو للعلم:</strong> "قُلْ هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ" — "سَنُرِيهِمْ آيَاتِنَا فِي الْآفَاقِ وَفِي أَنفُسِهِمْ" — أيضاً قوله ﷺ: "اطلبوا العلم ولو في الصين".</p>
+      <p><strong>تعارض مزعوم:</strong> ما يُقال إنه تعارض بين الإسلام والعلم هو في الغالب خلط بين التراث والدين، أو تفسيرات بشرية خاطئة لا النص القرآني نفسه.</p>`
+    }
+  ];
+
+  function openDoubt(index) {
+    document.getElementById('modalTitle').textContent = doubtsData[index].q;
+    document.getElementById('modalBody').innerHTML = doubtsData[index].body;
+    document.getElementById('doubtModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDoubt() {
+    document.getElementById('doubtModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('doubtModal')) closeDoubt();
+  }
+
+  function showTab(tab) {
+    document.querySelectorAll('.evidence-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function filterDoubts(val) {
+    const cards = document.querySelectorAll('.doubt-card');
+    cards.forEach(c => {
+      const text = c.textContent.toLowerCase();
+      c.style.display = text.includes(val.toLowerCase()) ? '' : 'none';
+    });
+  }
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function triggerFileInput() {
+    document.getElementById('fileInput').click();
+  }
+
+  function triggerThumbInput() {
+    document.getElementById('thumbInput').click();
+  }
+
+  function handleFileSelect(input) {
+    if (input.files && input.files[0]) {
+      const name = input.files[0].name;
+      const el = document.getElementById('uploadFileName');
+      el.textContent = '✓ ' + name;
+      el.style.display = 'block';
+    }
+  }
+
+  function handleThumbSelect(input) {
+    if (input.files && input.files[0]) {
+      const el = document.getElementById('thumbFileName');
+      el.textContent = '✓ ' + input.files[0].name;
+      el.style.display = 'block';
+    }
+  }
+
+  function submitVideo() {
+    const title = document.getElementById('vidTitle').value.trim();
+    const cat = document.getElementById('vidCat').value;
+    const fileInput = document.getElementById('fileInput');
+    const youtubeLink = document.getElementById('vidYoutube').value.trim();
+
+    if (!title) { showToast('⚠ الرجاء إدخال عنوان الفيديو'); return; }
+    if (!cat) { showToast('⚠ الرجاء اختيار القسم'); return; }
+    if (!fileInput.files[0] && !youtubeLink) { showToast('⚠ الرجاء رفع فيديو أو إدخال رابط يوتيوب'); return; }
+
+    showToast('✅ تم رفع الفيديو بنجاح! سيظهر في المكتبة قريباً');
+    document.getElementById('vidTitle').value = '';
+    document.getElementById('vidCat').value = '';
+    document.getElementById('vidDesc').value = '';
+    document.getElementById('vidYoutube').value = '';
+    document.getElementById('vidDuration').value = '';
+    document.getElementById('vidTags').value = '';
+    document.getElementById('uploadFileName').style.display = 'none';
+    document.getElementById('thumbFileName').style.display = 'none';
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // DRAG & DROP
+  const dropArea = document.getElementById('dropArea');
+  dropArea.addEventListener('dragover', e => { e.preventDefault(); dropArea.classList.add('drag-over'); });
+  dropArea.addEventListener('dragleave', () => dropArea.classList.remove('drag-over'));
+  dropArea.addEventListener('drop', e => {
+    e.preventDefault();
+    dropArea.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('video/')) {
+      const el = document.getElementById('uploadFileName');
+      el.textContent = '✓ ' + file.name;
+      el.style.display = 'block';
+    }
+  });
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // KEYBOARD ESC
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDoubt(); });
+</script>
+</body>
+</html>
